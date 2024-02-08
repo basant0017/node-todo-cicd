@@ -1,7 +1,7 @@
 pipeline {
     agent any
         environment {
-        dockerRun = sh "docker-compose down && docker-compose up -d" 
+        dockerRun = "docker-compose down && docker-compose up -d" 
 
     stages{
         stage('Code'){
@@ -28,7 +28,7 @@ pipeline {
                     // some block  
                    //  sh "ssh -tt -o StrictHostKeyChecking=no almalinux@15.235.147.96  ${env. dockerrm}"
                   //   sh "ssh -tt -o StrictHostKeyChecking=no almalinux@15.235.147.96  ${env. dockerimagerm}"         
-                     sh "ssh -tt -o StrictHostKeyChecking=no almalinux@15.235.147.96  ${env.dockerRun}"
+                       sh "ssh -tt -o StrictHostKeyChecking=no almalinux@15.235.147.96  ${env.dockerRun}"
                      
                      
                 }
