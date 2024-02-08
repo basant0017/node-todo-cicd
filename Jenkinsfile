@@ -28,10 +28,7 @@ pipeline {
                     // some block  
                    //  sh "ssh -tt -o StrictHostKeyChecking=no almalinux@15.235.147.96  ${env. dockerrm}"
                   //   sh "ssh -tt -o StrictHostKeyChecking=no almalinux@15.235.147.96  ${env. dockerimagerm}"         
-                       sh "ssh -tt -o StrictHostKeyChecking=no almalinux@15.235.147.96  ${env.dockerRun}"
-                     
-                     
+                       sh "ssh -tt -o StrictHostKeyChecking=no almalinux@15.235.147.96  ${env.dockerRun}"          
                 }
             }
     }
-}
