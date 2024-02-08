@@ -18,7 +18,7 @@ pipeline {
             steps{
                 withCredentials([string(credentialsId: 'docker', variable: 'docker')]) {
         	     sh 'docker login -u 8875022556 -p ${docker}'
-                 sh 'docker push trainwithshubham/node-todo-test:latest'
+                 sh 'docker push 8875022556/node-todo-test:latest'
                 }
             }
         }
@@ -31,4 +31,5 @@ pipeline {
                        sh "ssh -tt -o StrictHostKeyChecking=no almalinux@15.235.147.96  ${env.dockerRun}"          
                 }
             }
+    }
     }
