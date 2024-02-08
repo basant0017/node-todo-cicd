@@ -14,7 +14,10 @@ pipeline {
         
         stage('Build and Test') {
             steps {
-                sh 'docker build . -t 8875022556/node-todo-test:latest'
+            //    sh 'docker build . -t 8875022556/node-todo-test:latest'
+                  sh 'docker build -t $JOB_NAME:v1.$BUILD_ID .'
+                  sh 'docker tag $JOB_NAME:v1.$BUILD_ID 8875022556/$JOB_NAME:v1.$BUILD_ID'
+                  sh 'docker tag $JOB_NAME:v1.$BUILD_ID 8875022556/$JOB_NAME:latest'
             }
         }
         
@@ -22,7 +25,11 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'docker', variable: 'docker')]) {
                     sh 'docker login -u 8875022556 -p ${docker}'
-                    sh 'docker push 8875022556/node-todo-test:latest'
+                //    sh 'docker push 8875022556/node-todo-test:latest'
+                   
+                    sh 'docker  push 8875022556/$JOB_NAME:v1.$BUILD_ID'
+                    sh 'docker  push 8875022556/$JOB_NAME:latest'
+                    sh 'docker  rmi $JOB_NAME:v1.$BUILD_ID 8875022556/$JOB_NAME:v1.$BUILD_ID 8875022556/$JOB_NAME:latest'
                 }
             }
         }
