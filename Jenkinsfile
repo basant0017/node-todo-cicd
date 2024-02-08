@@ -14,8 +14,8 @@ pipeline {
         }
         stage('Push'){
             steps{
-                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-        	     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+                withCredentials([string(credentialsId: 'docker', variable: 'docker')]) {
+        	     sh 'docker login -u 8875022556 -p ${docker}'
                  sh 'docker push trainwithshubham/node-todo-test:latest'
                 }
             }
